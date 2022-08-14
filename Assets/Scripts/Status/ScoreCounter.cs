@@ -5,6 +5,7 @@ namespace Sapi.ZombieTap.Status
 {
     public class ScoreCounter : MonoBehaviour
     {
+        [Header("View")]
         [SerializeField] private TextMeshProUGUI _scoreText;
 
         private int _score;

@@ -4,6 +4,7 @@ namespace Sapi.ZombieTap.Objects
 {
     public abstract class BaseZombieObject : BaseObject
     {
+        [Header("Zombie Config")]
         [SerializeField] protected int _damage = 1;
 
         protected override void CheckPosition()

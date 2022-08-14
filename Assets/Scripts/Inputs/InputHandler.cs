@@ -1,9 +1,13 @@
+using Sapi.ZombieTap.Status;
 using UnityEngine;
 
 namespace Sapi.ZombieTap.Inputs
 {
     public class InputHandler : MonoBehaviour
     {
+        [Header("Dependency")]
+        [SerializeField] private LifeCounter _lifeCounter;
+
         private Camera _mainCamera;
 
         private void Awake()
@@ -13,6 +17,11 @@ namespace Sapi.ZombieTap.Inputs
 
         private void Update()
         {
+            if (_lifeCounter.IsDead)
+            {
+                return;
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 RaycastObject(Input.mousePosition);

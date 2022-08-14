@@ -1,5 +1,6 @@
 using Sapi.ZombieTap.Spawner;
 using Sapi.ZombieTap.Status;
+using TMPro;
 using UnityEngine;
 
 namespace Sapi.ZombieTap.Wave
@@ -8,6 +9,10 @@ namespace Sapi.ZombieTap.Wave
     {
         [Header("Dependency")]
         [SerializeField] private ObjectSpawner _spawner;
+        [SerializeField] private LifeCounter _lifeCounter;
+
+        [Header("View")]
+        [SerializeField] private TextMeshProUGUI _waveText;
 
         [Header("Config")]
         [SerializeField] private int _objectPerWave = 10;
@@ -19,12 +24,13 @@ namespace Sapi.ZombieTap.Wave
 
         private void Start()
         {
-            _spawner.OnSpawnFinished += () => _isRunning = false;
+            _waveIndex = 1;
+            _spawner.OnSpawnFinished += OnSpawnFinished;
         }
 
         private void Update()
         {
-            if (_isRunning)
+            if (_isRunning || _lifeCounter.IsDead)
             {
                 return;
             }
@@ -36,6 +42,12 @@ namespace Sapi.ZombieTap.Wave
                 _delayPerWaveTimer = 0f;
                 _isRunning = true;
             }
+        }
+
+        private void OnSpawnFinished()
+        {
+            _isRunning = false;
+            _waveText.SetText("Wave " + (++_waveIndex));
         }
     }
 }

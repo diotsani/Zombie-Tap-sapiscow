@@ -34,7 +34,7 @@ namespace Sapi.ZombieTap.Spawner
 
         private void Update()
         {
-            if (!_isRunning)
+            if (!_isRunning || _lifeCounter.IsDead)
             {
                 return;
             }
@@ -45,7 +45,7 @@ namespace Sapi.ZombieTap.Spawner
                 SpawnRandomObject();
                 _spawnDelayTimer = 0f;
 
-                if (--_spawnCounter < 0)
+                if (--_spawnCounter <= 0)
                 {
                     _isRunning = false;
                 }
@@ -60,7 +60,7 @@ namespace Sapi.ZombieTap.Spawner
 
         private void UpdateDespawnCounter()
         {
-            if (--_despawnCounter < 0 && !_isRunning)
+            if (--_despawnCounter <= 0 && !_isRunning)
             {
                 OnSpawnFinished?.Invoke();
             }
@@ -97,6 +97,7 @@ namespace Sapi.ZombieTap.Spawner
             }
 
             ConfigSpawnedObject(zombie);
+            zombie.SetSideBound(_spawnRandomRadiusX);
         }
 
         private void SpawnHuman()

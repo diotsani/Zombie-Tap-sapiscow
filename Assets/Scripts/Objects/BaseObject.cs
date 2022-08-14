@@ -5,6 +5,7 @@ namespace Sapi.ZombieTap.Objects
 {
     public abstract class BaseObject : MonoBehaviour, IRaycastable
     {
+        [Header("Base Config")]
         [SerializeField] protected float _moveSpeed = 2f;
         [SerializeField] protected int _point = 1;
 
@@ -21,6 +22,11 @@ namespace Sapi.ZombieTap.Objects
 
         protected virtual void Update()
         {
+            if (_lifeCounter.IsDead)
+            {
+                return;
+            }
+
             Move();
             CheckPosition();
         }
