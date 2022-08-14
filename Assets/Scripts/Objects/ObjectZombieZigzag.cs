@@ -12,8 +12,10 @@ namespace Sapi.ZombieTap.Objects
         private float _sideBound;
         private float _changeSideDelayTimer;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
+            
             _changeSideDelayTimer = _changeSideDelay;
         }
 

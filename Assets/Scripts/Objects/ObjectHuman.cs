@@ -13,8 +13,13 @@ namespace Sapi.ZombieTap.Objects
 
         public override void OnRaycasted()
         {
+            if (_isDespawning)
+            {
+                return;
+            }
+
             _lifeCounter.ForceDead();
-            gameObject.SetActive(false);
+            Despawn();
         }
     }
 }

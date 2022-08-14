@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sapi.ZombieTap.Spawner;
 using Sapi.ZombieTap.Status;
 using TMPro;
@@ -47,6 +48,12 @@ namespace Sapi.ZombieTap.Wave
         private void OnSpawnFinished()
         {
             _isRunning = false;
+
+            // Tweening Effect
+            DOTween.Kill(_waveText?.transform);
+            _waveText.transform.localScale = Vector3.one * 2f;
+            _waveText.transform.DOScale(Vector3.one, 2f).SetEase(Ease.OutBack, 2f);
+
             _waveText.SetText("Wave " + (++_waveIndex));
         }
     }

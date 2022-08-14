@@ -18,8 +18,13 @@ namespace Sapi.ZombieTap.Objects
 
         public override void OnRaycasted()
         {
+            if (_isDespawning)
+            {
+                return;
+            }
+
             _scoreCounter.AddScore(_point);
-            gameObject.SetActive(false);
+            Despawn();
         }
     }
 }

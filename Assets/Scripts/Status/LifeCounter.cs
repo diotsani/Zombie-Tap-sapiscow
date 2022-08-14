@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -42,6 +43,12 @@ namespace Sapi.ZombieTap.Status
         private void SetLife(int life)
         {
             _life = life;
+
+            // Tweening Effect
+            DOTween.Kill(_lifeText?.transform);
+            _lifeText.transform.localScale = Vector3.one * 1.25f;
+            _lifeText.transform.DOScale(Vector3.one, 0.25f).SetEase(Ease.OutBack, 2f);
+
             _lifeText.SetText("Life: " + _life);
         }
     }

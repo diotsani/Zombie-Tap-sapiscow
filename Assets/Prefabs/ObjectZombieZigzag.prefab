@@ -12,16 +12,24 @@ PrefabInstance:
       value: ObjectZombieZigzag
       objectReference: {fileID: 0}
     - target: {fileID: 6645234405138509386, guid: 7c0ea7e35a26b5c44aada41ed3bd2436, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -370007496, guid: 2b7c4297406ae7f41840c84a3c6cf031, type: 3}
     - target: {fileID: 6645234405138509386, guid: 7c0ea7e35a26b5c44aada41ed3bd2436, type: 3}
-      propertyPath: m_Color.g
+      propertyPath: m_Color.b
       value: 0.5019608
       objectReference: {fileID: 0}
     - target: {fileID: 6645234405138509386, guid: 7c0ea7e35a26b5c44aada41ed3bd2436, type: 3}
-      propertyPath: m_Color.r
+      propertyPath: m_Color.g
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645234405138509386, guid: 7c0ea7e35a26b5c44aada41ed3bd2436, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6645234405138509386, guid: 7c0ea7e35a26b5c44aada41ed3bd2436, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6645234405138509387, guid: 7c0ea7e35a26b5c44aada41ed3bd2436, type: 3}
       propertyPath: m_RootOrder

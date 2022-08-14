@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Sapi.ZombieTap.Status;
 using UnityEngine;
 
@@ -11,9 +12,19 @@ namespace Sapi.ZombieTap.Objects
 
         protected LifeCounter _lifeCounter;
         protected ScoreCounter _scoreCounter;
+
+        protected bool _isDespawning;
         protected float _despawnedHeight;
 
         public event System.Action OnDespawned;
+
+        protected virtual void OnEnable()
+        {
+            _isDespawning = false;
+
+            DOTween.Kill(transform);
+            transform.localScale = Vector3.one;
+        }
 
         protected virtual void OnDisable()
         {
@@ -22,7 +33,7 @@ namespace Sapi.ZombieTap.Objects
 
         protected virtual void Update()
         {
-            if (_lifeCounter.IsDead)
+            if (_lifeCounter.IsDead || _isDespawning)
             {
                 return;
             }
@@ -45,6 +56,15 @@ namespace Sapi.ZombieTap.Objects
         protected virtual void Move()
         {
             transform.Translate(0f, -_moveSpeed * Time.deltaTime, 0f);
+        }
+
+        protected virtual void Despawn()
+        {
+            _isDespawning = true;
+            transform.DOScale(Vector3.zero, 0.25f)
+                .SetEase(Ease.InBack, 3f)
+                .OnComplete(() => gameObject.SetActive(false)
+            );
         }
 
         protected abstract void CheckPosition();
